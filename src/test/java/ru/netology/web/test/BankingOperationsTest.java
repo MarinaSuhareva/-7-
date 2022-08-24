@@ -28,7 +28,7 @@ class BankingOperationsTest {
 
     @Test
     void transferMoneyToSecondCard() {
-        int value = 100000;
+        int value = 10000;
         String cardNumber = String.valueOf(DataHelper.getFirstCardNumber());
         val balancePage = new BalancePage();
         var firstCardBalance = balancePage.getFirstCardBalance();
