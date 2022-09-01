@@ -29,13 +29,12 @@ class BankingOperationsTest {
     @Test
     void transferMoneyToSecondCard() {
         int value = 10000;
-        String cardNumber = String.valueOf(DataHelper.getFirstCardNumber());
         val balancePage = new BalancePage();
         var firstCardBalance = balancePage.getFirstCardBalance();
         var secondCardBalance = balancePage.getSecondCardBalance();
         balancePage.secondButton();
         val transferPage = new TransferPage();
-        transferPage.transferData(value, cardNumber);
+        transferPage.transferData(value, String.valueOf(DataHelper.getFirstCardNumber()));
         var firstCardBalance1 = balancePage.getFirstCardBalance();
         var secondCardBalance1 = balancePage.getSecondCardBalance();
         Assertions.assertEquals(firstCardBalance - value, firstCardBalance1);
@@ -47,13 +46,12 @@ class BankingOperationsTest {
     @Test
     void TransferMoneyToFirstCard() {
         int value = 10000;
-        String cardNumber = String.valueOf(DataHelper.getSecondCardNumber());
         val balancePage = new BalancePage();
         var firstCardBalance = balancePage.getFirstCardBalance();
         var secondCardBalance = balancePage.getSecondCardBalance();
         balancePage.firstButton();
         val transferPage = new TransferPage();
-        transferPage.transferData(value, cardNumber);
+        transferPage.transferData(value, String.valueOf(DataHelper.getSecondCardNumber()));
         var firstCardBalance1 = balancePage.getFirstCardBalance();
         var secondCardBalance1 = balancePage.getSecondCardBalance();
         Assertions.assertEquals(secondCardBalance - value, secondCardBalance1);
@@ -64,13 +62,12 @@ class BankingOperationsTest {
     @Test
     void transferMoneyToSecondCard2() {
         int value = 0;
-        String cardNumber = String.valueOf(DataHelper.getFirstCardNumber());
         val balancePage = new BalancePage();
         var firstCardBalance = balancePage.getFirstCardBalance();
         var secondCardBalance = balancePage.getSecondCardBalance();
         balancePage.secondButton();
         val transferPage = new TransferPage();
-        transferPage.transferData(value, cardNumber);
+        transferPage.transferData(value, String.valueOf(DataHelper.getFirstCardNumber()));
         var firstCardBalance1 = balancePage.getFirstCardBalance();
         var secondCardBalance1 = balancePage.getSecondCardBalance();
         Assertions.assertEquals(firstCardBalance - value, firstCardBalance1);
@@ -82,17 +79,14 @@ class BankingOperationsTest {
     @Test
     void TransferMoneyToFirstCard2() {
         int value = 100000;
-        String cardNumber = String.valueOf(DataHelper.getSecondCardNumber());
         val balancePage = new BalancePage();
         var firstCardBalance = balancePage.getFirstCardBalance();
-        var secondCardBalance = balancePage.getSecondCardBalance();
         balancePage.firstButton();
         val transferPage = new TransferPage();
-        transferPage.transferData(value, cardNumber);
-        var firstCardBalance1 = balancePage.getFirstCardBalance();
-        var secondCardBalance1 = balancePage.getSecondCardBalance();
-        Assertions.assertEquals(secondCardBalance - value, secondCardBalance1);
-        Assertions.assertEquals(firstCardBalance + value, firstCardBalance1);
+        transferPage.transferData(value, String.valueOf(DataHelper.getSecondCardNumber()));
+
+        transferPage.transferData(value + firstCardBalance, String.valueOf(DataHelper.getSecondCardNumber()));
         transferPage.getNotification();
     }
 }
+
