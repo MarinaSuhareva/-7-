@@ -28,13 +28,13 @@ class BankingOperationsTest {
 
     @Test
     void transferMoneyToSecondCard() {
-        int value = 10000;
+        int value = 100000;
         val balancePage = new BalancePage();
         var firstCardBalance = balancePage.getFirstCardBalance();
         var secondCardBalance = balancePage.getSecondCardBalance();
         balancePage.secondButton();
         val transferPage = new TransferPage();
-        transferPage.transferData(value, String.valueOf(DataHelper.getFirstCardNumber()));
+        transferPage.transferData(value, DataHelper.getFirstCardNumber().getNumber());
         var firstCardBalance1 = balancePage.getFirstCardBalance();
         var secondCardBalance1 = balancePage.getSecondCardBalance();
         Assertions.assertEquals(firstCardBalance - value, firstCardBalance1);
@@ -51,7 +51,7 @@ class BankingOperationsTest {
         var secondCardBalance = balancePage.getSecondCardBalance();
         balancePage.firstButton();
         val transferPage = new TransferPage();
-        transferPage.transferData(value, String.valueOf(DataHelper.getSecondCardNumber()));
+        transferPage.transferData(value, DataHelper.getSecondCardNumber().getNumber());
         var firstCardBalance1 = balancePage.getFirstCardBalance();
         var secondCardBalance1 = balancePage.getSecondCardBalance();
         Assertions.assertEquals(secondCardBalance - value, secondCardBalance1);
@@ -67,7 +67,7 @@ class BankingOperationsTest {
         var secondCardBalance = balancePage.getSecondCardBalance();
         balancePage.secondButton();
         val transferPage = new TransferPage();
-        transferPage.transferData(value, String.valueOf(DataHelper.getFirstCardNumber()));
+        transferPage.transferData(value, DataHelper.getFirstCardNumber().getNumber());
         var firstCardBalance1 = balancePage.getFirstCardBalance();
         var secondCardBalance1 = balancePage.getSecondCardBalance();
         Assertions.assertEquals(firstCardBalance - value, firstCardBalance1);
@@ -83,9 +83,9 @@ class BankingOperationsTest {
         var firstCardBalance = balancePage.getFirstCardBalance();
         balancePage.firstButton();
         val transferPage = new TransferPage();
-        transferPage.transferData(value, String.valueOf(DataHelper.getSecondCardNumber()));
+        transferPage.transferData(value, DataHelper.getSecondCardNumber().getNumber());
 
-        transferPage.transferData(value + firstCardBalance, String.valueOf(DataHelper.getSecondCardNumber()));
+        transferPage.transferData(value + firstCardBalance, DataHelper.getSecondCardNumber().getNumber());
         transferPage.getNotification();
     }
 }

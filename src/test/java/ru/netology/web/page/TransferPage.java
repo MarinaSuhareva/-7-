@@ -15,7 +15,7 @@ public class TransferPage {
 
     public void transferData(int value, String cardNumber) {
         transferAmount.setValue(Integer.toString(value));
-        CardTransfer.setValue(String.valueOf(cardNumber));
+        CardTransfer.setValue(cardNumber);
         clickButton.click();
     }
 
